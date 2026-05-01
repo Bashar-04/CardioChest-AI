@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CardioChest AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="bg-particle"></div>
+    <div class="bg-particle"></div>
+    <div class="bg-particle"></div>
+    <div class="bg-particle"></div>
+
+    <main class="page">
+
+        <section class="hero">
+            <div class="hero-content">
+                <div class="eyebrow">Chest Radiology Screening Prototype</div>
+
+                <h1>CardioChest <span>AI</span></h1>
+
+                <p>
+                    A deep learning web application for analyzing chest X-ray images
+                    and estimating selected cardiopulmonary findings using transfer learning.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#upload" class="primary-btn">Start Analysis</a>
+                    <span class="note">Educational prototype only</span>
+                </div>
+            </div>
+
+            <div class="hero-panel">
+                <div class="panel-header">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="scan-box">
+                    <div class="scan-line"></div>
+                    <div class="xray-icon">XR</div>
+                </div>
+
+                <div class="panel-info">
+                    <div>
+                        <small>Architecture</small>
+                        <strong>DenseNet121</strong>
+                    </div>
+
+                    <div>
+                        <small>Input Size</small>
+                        <strong>{{ img_size }} × {{ img_size }}</strong>
+                    </div>
+
+                    <div>
+                        <small>Threshold</small>
+                        <strong>{{ threshold }}</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="content-grid">
+
+            <div class="upload-card" id="upload">
+                <h2>Upload Chest X-ray</h2>
+                <p>
+                    Upload a grayscale chest X-ray image. The system will first validate
+                    the image style before running model prediction.
+                </p>
+
+                <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+                    <label class="upload-area">
+                        <input type="file" name="image" accept=".png,.jpg,.jpeg" required>
+                        <span class="upload-icon">+</span>
+                        <strong>Choose X-ray image</strong>
+                        <small>PNG, JPG, or JPEG</small>
+                    </label>
+
+                    <button type="submit" class="submit-btn">Analyze Image</button>
+                </form>
+            </div>
+
+
+            <div class="info-card">
+                <h2>Model Overview</h2>
+
+                <div class="info-row">
+                    <span>Architecture</span>
+                    <strong>DenseNet121 Transfer Learning</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Target Findings</span>
+                    <strong>Cardiomegaly, Edema, Effusion</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Validation</span>
+                    <strong>Chest X-ray style check</strong>
+                </div>
+
+                <div class="info-row">
+                    <span>Use Case</span>
+                    <strong>Educational Demo</strong>
+                </div>
+
+                <div class="warning">
+                    <strong>Medical disclaimer:</strong>
+                    This system is for educational and demonstration purposes only.
+                    It is not a medical diagnosis.
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

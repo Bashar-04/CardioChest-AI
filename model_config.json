@@ -1,0 +1,1 @@
+{"labels": ["No Finding", "Cardiomegaly", "Edema", "Effusion", "Pneumonia"], "active_labels": ["No Finding", "Cardiomegaly", "Edema", "Effusion"], "threshold": 0.3, "img_size": 224, "preprocessing": "densenet_preprocess_input"}
